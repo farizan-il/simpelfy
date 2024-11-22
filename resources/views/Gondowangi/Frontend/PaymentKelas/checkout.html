@@ -1,0 +1,93 @@
+@extends('gondowangi.frontend.layout.main')
+
+@section('head')
+    <title>{{ $title }}</title>
+@endsection
+
+@section('content')
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option" style="color: rgba(255, 223, 160, 0.8);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Kelas yang di pesan</h4>
+                        <div class="breadcrumb__links">
+                            <span>Ini juga gak tau harus di kasih tulisan apa dah</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6" style="margin-bottom: 90px">
+                        <h6 class="checkout__title">Rincian Penagihan</h6>
+                        <div class="checkout__input">
+                            <p>Nama Lengkap</p>
+                            <input type="text" class="rounded text-dark" value="{{ Auth::user()->profile->nama }}" name="nama">
+                        </div>
+                        <div class="checkout__input">
+                            <p>email</p>
+                            <input type="text" class="rounded text-dark" value="{{ Auth::user()->email }}" name="email">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Nomor Ponsel</p>
+                            <input type="text" class="rounded text-dark" value="{{ Auth::user()->profile->nomorHandphone }}" name="nohp">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8 col-md-6">
+                        <div class="checkout__order rounded shadow">
+                            <h4 class="order__title">Your order</h4>
+                            <div class="checkout__order__products">Product <span>Total</span></div>
+                            <ul class="checkout__total__products">
+                                @foreach($keranjang as $item)
+                                    <li>{{ $item->kelas->title }} <span>IDR {{ $item->kelas->harga }}</span></li>
+                                @endforeach
+                            </ul>
+                            <ul class="checkout__total__all">
+                                <li>Subtotal <span>IDR {{ $total }}</span></li>
+                            </ul>
+                            <form id="paymentForm" method="POST" action="{{ route('paymentkelas.store') }}">
+                                @csrf
+                                <button type="button" id="confirmPayment" class="site-btn bg-primary btn-sm">Selesaikan Pembayaran</button>
+                            </form>
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Section End -->
+@endsection
+
+@section('script')
+<script>
+    document.getElementById('confirmPayment').addEventListener('click', function (e) {
+        // Munculkan SweetAlert untuk konfirmasi
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Anda akan menyelesaikan pembayaran ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, selesaikan!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Jika pengguna konfirmasi, submit form
+                document.getElementById('paymentForm').submit();
+            }
+        });
+    });
+</script>
+@endsection

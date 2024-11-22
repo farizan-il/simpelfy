@@ -1,0 +1,373 @@
+@extends('gondowangi.frontend.layout.main')
+
+@section('head')
+    <title>{{ $title }}</title>
+    <style>
+        .sticky-card {
+            position: -webkit-sticky; /* For Safari */
+            position: sticky;
+            top: 40px; /* Jarak dari atas halaman */
+            transition: all 0.3s ease-in-out;
+        }
+    
+        .sticky-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 576px) {
+            .a {
+                font-size: 6px; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .a {
+                font-size: 9px; 
+            }
+        }
+
+    </style>
+
+
+@endsection
+
+@section('content')
+        <!-- Breadcrumb Section Begin -->
+        <section class="breadcrumb-option">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb__text">
+                            <h2><strong>{{ $detail->title }}</strong></h2>
+                            <div class="breadcrumb__links mt-2">
+                                <p>{{ $detail->subtitle }}</p>
+                            </div>
+                            <div class="d-flex x-gap-30 y-gap-10 flex-wrap mt-4">
+                                <div class="d-flex text-secondary mb-2 mr-3">
+                                    <div class="text-14 text-yellow-1">0.0
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                    <div class="text-14 lh-1 text-light-1 ml-10">(0)</div>
+                                </div>
+    
+                                <div class="mb-2 items-center text-light-1 mr-3">
+                                    <i class="fa fa-users text-secondary">
+                                        0 Pendaftar
+                                    </i>
+                                </div>
+    
+                                <div class="d-flex mb-2 items-center text-light-1">
+                                    <i class="fa fa-clock-o text-secondary">
+                                        Last updated 10/2024
+                                    </i>
+                                </div>
+                            </div>
+    
+                            <div class="d-flex items-center align-items-center mt-3">
+                                <img src="https://st3.depositphotos.com/2760050/33871/i/450/depositphotos_338713400-stock-photo-masculine-aesthetic-few-grooming-life.jpg"
+                                    alt="" class="rounded-circle border border-white" height="25px" width="25px">
+                                <div class="text-14 lh-1 ml-10 align-items-center ml-2">Juragan Nzan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb Section End -->
+    
+        <!-- Checkout Section Begin -->
+        <section class="checkout spad mt-0">
+            <div class="container">
+                <div class="checkout__form">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-6 d-block d-md-none">
+                            <div class="checkout__order border rounded" style="position: sticky; top: 40px; transition: all 0.3s ease-in-out;">
+                                <img src="{{ asset('image/kelas-sampul/' . $detail->foto) }}" class="rounded" alt="">
+
+                                <ul class="checkout__total__all mb-0">
+                                    <li><strong class="text-secondary">Harga Kelas : </strong><span>IDR {{ number_format( $detail->harga, 0, ',', '.') }}</span></li>
+                                    
+                                    <li>
+                                        <form action="{{ route('payment.beli') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="kelas_id" value="{{ $detail->id }}">
+                                            <button type="submit" class="site-btn rounded bg-primary text-white payment-button btn-sm text-center">
+                                                Beli Sekarang
+                                            </button>
+                                        </form>
+                                    </li>                                        
+                                </ul>
+
+                                <ul class="checkout__total__all border-0 mt-3">
+                                    <li>
+                                        <i class="fa fa-book text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Modul </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">{{ $lectures }}</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-clock-o text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Durasi </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">68 Jam</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-signal text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Tingkat </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">Menengah</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-certificate text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Sertifikat </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">Iya</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-key text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Akses Seumur Hidup </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">Iya</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- card penjelasan payment -->
+                        <div class="col-lg-8 col-md-6 mb-3">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="product__details__tab">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#tabs-5" role="tab" style="font-size: 1.1rem">Deskripsi</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab" style="font-size: 1.1rem">Kurikulum</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab" style="font-size: 1.1rem">Review</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <!-- deskripsi -->
+                                            <div class="tab-pane active" id="tabs-5" role="tabpanel">
+                                                <div class="product__details__tab__content">
+                                                    <div class="product__details__tab__content__item">
+                                                        {{-- benefit yang di dapatkan --}}
+                                                        <div class="mt-2 mb-5">
+                                                            <h4 class="text-20 mb-3">Apa yang akan kamu pelajari</h4>
+                                                            <div class="row">
+                                                                @foreach($benefits as $benefit)
+                                                                    <div class="col-md-6">
+                                                                        <div class="d-flex rounded rounded">
+                                                                            <i class="fa mt-1 fa-check text-primary mr-3">
+                                                                            </i>
+                                                                            <span>{{ $benefit }}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="d-flex rounded rounded">
+                                                                            <i class="fa mt-1 fa-check text-primary mr-3">
+                                                                            </i>
+                                                                            <span>{{ $benefit }}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                        <p>{!! $detail->deskripsi !!}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- konten -->
+                                            <div class="tab-pane" id="tabs-6" role="tabpanel">
+                                                <div class="product__details__tab__content">
+                                                    <div class="product__details__tab__content__item">
+                                                        <h5>Konten Kelas</h5>
+                                                        <p class="text-primary mb-2">{{ $sections}} bagian • {{ $lectures }} pelajaran</p>
+                                                        
+                                                        @foreach ($modul as $item)
+                                                            <div class="shop__sidebar__accordion mb-3">
+                                                                <div class="accordion" id="accordionExample">
+                                                                    <div class="card border-bottom p-2 rounded ">
+                                                                        <div class="card-heading">
+                                                                            <a data-toggle="collapse" data-target="#collapse{{ $item->id }}" >{{ $item->judulModul }}</a>
+                                                                        </div>
+                                                                        <div id="collapse{{ $item->id }}" class="collapse" data-parent="#accordionExample">
+                                                                            <div class="card-body">
+                                                                                <div class="shop__sidebar__price">
+                                                                                    <ul>
+                                                                                        @foreach($detailModuls->where('id_modul', $item->id) as $detailModul)
+                                                                                            <li >
+                                                                                                <a href="#" class="text-secondary">
+                                                                                                <i class="fa fa-play-circle text-primary"></i> 
+                                                                                                {{ $detailModul->detailSubModul }}</a>
+                                                                                            </li>
+                                                                                        @endforeach
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- review -->
+                                            <div class="tab-pane" id="tabs-7" role="tabpanel">
+                                                <div class="product__details__tab__content">
+                                                  <div class="panel">
+                                                    <div class="panel-body">
+                                                      <!-- Newsfeed Content -->
+                                                      <!--===================================================-->
+                                                        <div class="media-block">
+                                                            <a class="media-left rounded-circle mr-3" href="#">
+                                                                <img class="rounded-circle img-sm" alt="Profile Picture"
+                                                                src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                                                            <div class="media-body">
+                                                                <div class="mar-btm">
+                                                                    <a href="#" class="btn-link text-semibold media-heading box-inline">Farizan</a>
+                                                                    <p class="text-muted text-sm">Dept IT - 11 min ago</p>
+                                                                </div>
+                                                                <p>Gila sih badass, daging semua. makasih ilmunya, pak nobody</p>
+                                                                <div class="pad-ver mt-1 mb-4">
+                                                                    <div class="btn-group">
+                                                                        <a class="btn btn-sm btn-default btn-hover-success" href="#"><i
+                                                                            class="fa text-secondary fa-thumbs-up"></i> 333</a>
+                                                                        <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i
+                                                                            class="fa text-secondary fa-thumbs-down"></i></a>
+                                                                    </div>
+                                                                    <a class="btn btn-sm btn-default btn-hover-primary" href="#">Balas</a>
+                                                                </div>
+                                                
+                                                
+                                                                <!-- balasan Balass -->
+                                                                <div>
+                                                                    <div class="media-block">
+                                                                        <a class="media-left rounded-circle mr-3" href="#">
+                                                                            <img class="rounded-circle img-balasan" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar2.png">
+                                                                        </a>
+                                                                        <div class="media-body">
+                                                                            <div class="mar-btm">
+                                                                                <a href="#" class="btn-link text-semibold media-heading box-inline">Bobby Marz</a>
+                                                                                <p class="text-muted text-sm">
+                                                                                    Dept Sales - 7 min ago
+                                                                                </p>
+                                                                            </div>
+                                                                            <p>
+                                                                                Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                                            </p>
+                                                                            <div class="pad-ver mb-3">
+                                                                                <div class="btn-group">
+                                                                                    <a class="btn btn-sm btn-default btn-hover-success active" href="#"><i
+                                                                                        class="fa fa-thumbs-up text-danger"></i> 126</a>
+                                                                                    <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i
+                                                                                        class="fa fa-thumbs-down text-secondary"></i></a>
+                                                                                </div>
+                                                                                <a class="btn btn-sm btn-default btn-hover-primary" href="#">Balas</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                    
+                                                                    <div class="media-block">
+                                                                        <a class="media-left rounded-circle mr-3" href="#">
+                                                                            <img class="rounded-circle img-balasan" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar3.png">
+                                                                        </a>
+                                                                        <div class="media-body">
+                                                                            <div class="mar-btm">
+                                                                                <a href="#" class="btn-link text-semibold media-heading box-inline">Lucy Moon</a>
+                                                                                <p class="text-muted text-sm">
+                                                                                    Dept Finance - 2 min ago</p>
+                                                                            </div>
+                                                                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate ?</p>
+                                                                            <div class="pad-ver mb-3">
+                                                                                <div class="btn-group">
+                                                                                    <a class="btn btn-sm btn-default btn-hover-success" href="#"><i
+                                                                                        class="fa text-secondary fa-thumbs-up"></i></a>
+                                                                                    <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i
+                                                                                        class="fa fa-thumbs-down text-secondary"></i></a>
+                                                                                </div>
+                                                                                <a class="btn btn-sm btn-default btn-hover-primary" href="#">Balas</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                      <!--===================================================-->
+                                                      <!-- End Newsfeed Content -->
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card payment kelas -->
+                        <div class="col-lg-4 col-md-6 d-none d-sm-block">
+                            <div class="checkout__order shadow rounded" style="position: sticky; top: 40px; transition: all 0.3s ease-in-out;">
+                                <img src="{{ asset('image/kelas-sampul/' . $detail->foto) }}" class="rounded" alt="">
+
+                                <ul class="checkout__total__all mb-0">
+                                    <li><strong class="text-secondary">Harga Kelas : </strong><span>IDR {{ number_format( $detail->harga, 0, ',', '.') }}</span></li>
+                                    
+                                    <li>
+                                        <form action="{{ route('payment.beli') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="kelas_id" value="{{ $detail->id }}">
+                                            <button type="submit" class="site-btn rounded bg-primary text-white payment-button btn-sm text-center">
+                                                Beli Sekarang
+                                            </button>
+                                        </form>
+                                    </li>                                        
+                                </ul>
+
+                                <ul class="checkout__total__all border-0 mt-3">
+                                    <li>
+                                        <i class="fa fa-book text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Modul </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">{{ $lectures }}</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-clock-o text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Durasi </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">68 Jam</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-signal text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Tingkat </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">Menengah</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-certificate text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Sertifikat </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">Iya</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-key text-secondary mr-2"></i>
+                                        <strong class="text-secondary">Akses Seumur Hidup </strong>
+                                        <span class="text-secondary" style="font-size: 15px;">Iya</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Checkout Section End -->
+@endsection
+
+@section('script')
+
+@endsection

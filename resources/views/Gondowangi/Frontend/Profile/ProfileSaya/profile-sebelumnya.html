@@ -1,0 +1,112 @@
+<!-- explore Section Begin -->
+<section class="shop spad mt-4">
+    <div class="container">
+        <div class="row">
+
+            {{-- filter kelas --}}
+            <div class="col-lg-3">
+                <div class="shop__sidebar">
+                    <div class="card" style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.113);">
+                        <div class="card-body">
+                            <div class="shop__sidebar__brand">
+                                <ul>
+                                    <li class="mb-4 d-flex  align-items-center">
+                                        <img src="https://cdn.eraspace.com/pub/media/mageplaza/blog/post/p/o/positive-confident-young-caucasian-male-office-worker-wearing-white-formal-shirt-classic-trousers-with-belt-having-happy-facial-expression-keeping-hands-pockets-smiling-joyfully_343059-4600.jpg" 
+                                             class="rounded-circle mb-2 mr-3" height="50" width="50" alt="" style="object-fit: cover;">
+                                        <label class="text-dark" for="levelAll">
+                                            <strong>{{ Auth::user()->profile->nama }}</strong> <br>
+                                            {{ Auth::user()->email }}
+                                        </label>
+                                    </li>                                        
+                                    
+                                    <hr class="text-secondary">
+                                    <li class="mb-3 mt-4">
+                                        <a href="/profilesaya" style="cursor: pointer;">
+                                            <i class="text-primary mr-3 fas fa-user"></i>
+                                            <label class="text-primary" for="levelAll" style="cursor: pointer;"><strong>Profile Saya</strong></label>
+                                        </a>
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="text-secondary mr-3 fas fa-bell"></i>
+                                        <label class="text-secondary" for="levelBeginner">Notifikasi</label>
+                                    </li>
+                                    <li class="mb-3">
+                                        <a href="/kelassaya" style="cursor: pointer;">
+                                            <i class="text-secondary mr-3 fas fa-chalkboard-teacher"></i>
+                                            <label class="text-secondary" for="levelIntermediate" style="cursor: pointer;">Kelas Saya</label>
+                                        </a>
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="text-secondary mr-3 fas fa-history"></i>
+                                        <label class="text-secondary" for="levelAdvance">Riwayat Transaksi</label>
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="text-secondary mr-3 fas fa-heart"></i>
+                                        <label class="text-secondary" for="levelAdvance">Favorit Saya</label>
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="text-secondary mr-3 fas fa-key"></i>
+                                        <label class="text-secondary" for="levelAdvance">Ganti Kata Sandi</label>
+                                    </li>
+                                </ul>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- card kelas pilihan --}}
+            <div class="col-lg-9 col-lg-9 col-sm-12">                   
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 shop__sidebar__brand mb-3">
+                        <div class="card-body p-0">
+                            <div class="chocolat-parent">
+                                <a href="" class="chocolat-image" title="Just an example">
+                                <div data-crop-image="285">
+                                    <img alt="image" src="https://cdnpro.eraspace.com/media/wysiwyg/artikel/Tahun_2022/September/fotoformal-2.jpg" class="img-fluid rounded">
+                                </div>
+                                </a>
+                            </div>
+                            <div class="custom-file col-12 mt-3">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Upload Gambar Baru</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12 shop__sidebar__brand" >
+                        <div class="form-group mb-4">
+                            <label>Nama</label>
+                            <input type="text" class="form-control" value="{{ Auth::user()->profile->nama}}">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>Email</label>
+                            <input type="text" class="form-control" value="{{ Auth::user()->email}}">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>Nomor Telepon</label>
+                            <input type="text" class="form-control" value="{{ Auth::user()->profile->nomorHandphone}}">
+                        </div>
+                        <div class="form-group mb-5">
+                            <div class="section-title text-start mb-1">Jenis Kelamin</div>
+                            <div class="custom-control custom-radio custom-control-inline mt-0">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">Pria</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">Wanita</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <button type="button" id="confirmPayment" class="site-btn bg-primary btn-sm py-2 px-5" style="font-size: 0.7rem; letter-spacing: 2px;">Perbarui</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+        </div>
+    </div>
+</section>
+<!-- explore Section End -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

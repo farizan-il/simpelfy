@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    @yield('head')
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="{{ asset('style-backend/modules/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('style-backend/modules/fontawesome/css/all.min.css') }}">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('style-backend/modules/jqvmap/dist/jqvmap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('style-backend/modules/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('style-backend/modules/owlcarousel2/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('style-backend/modules/owlcarousel2/dist/assets/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('style-backend/modules/datatables/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('style-backend/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('style-backend/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css') }}">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('style-backend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('style-backend/css/components.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-94034622-3');
+    </script>
+
+    <style>
+        .card{
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        }
+
+        .main-content{
+            background-color: rgb(247, 251, 255)
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body style="background-color: rgb(247, 251, 255)">
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar" style="background-color: rgb(247, 251, 255)">
+                <form class="form-inline mr-auto">
+                    <ul class="navbar-nav mr-3">
+                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
+                                    class="fas fa-bars text-primary"></i></a></li>
+                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
+                                    class="fas fa-search"></i></a></li>
+                    </ul>
+                    <div class="search-element rounded">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                            data-width="250">
+                        <button class="btn" type="submit"><i class="fas fa-search text-primary"></i></button>
+                        <div class="search-backdrop"></div>
+                        <div class="search-result">
+                            <div class="search-header">
+                                Histories
+                            </div>
+                            <div class="search-item">
+                                <a href="#">Gimana caranya hack NASA pake CSS</a>
+                                <a href="#" class="search-close"><i class="fas fa-times"></i></a>
+                            </div>
+                            <div class="search-header">
+                                Result
+                            </div>
+                            <div class="search-item">
+                                <a href="#">
+                                    <img class="mr-3 rounded" width="30"
+                                        src="{{ asset('style-backend/img/products/product-3-50.png') }}" alt="product">
+                                    oPhone S9 Limited Edition
+                                </a>
+                            </div>
+                            <div class="search-item">
+                                <a href="#">
+                                    <img class="mr-3 rounded" width="30"
+                                        src="{{ asset('style-backend/img/products/product-2-50.png') }}" alt="product">
+                                    Drone X2 New Gen-7
+                                </a>
+                            </div>
+                            <div class="search-item">
+                                <a href="#">
+                                    <img class="mr-3 rounded" width="30"
+                                        src="{{ asset('style-backend/img/products/product-1-50.png') }}" alt="product">
+                                    Headphone Blitz
+                                </a>
+                            </div>
+                            <div class="search-header">
+                                Projects
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <ul class="navbar-nav navbar-right">
+                    <li class="dropdown"><a href="#" data-toggle="dropdown"
+                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <img alt="image" src="{{ asset('style-backend/img/avatar/avatar-1.png') }}"
+                                class="rounded-circle mr-1">
+                            {{-- <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->profile->nama }}</div> --}}
+                            <div class="d-sm-none d-lg-inline-block text-primary">Hi, Zan</div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="main-sidebar sidebar-style-2 ">
+                <aside id="sidebar-wrapper">
+                    <div class="sidebar-brand">
+                        <a href="index.html">Gondowangi</a>
+                    </div>
+                    <div class="sidebar-brand sidebar-brand-sm">
+                        <a href="index.html">GW</a>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="menu-header">Dashboard</li>
+                        <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                            <a class="nav-link" href="/test">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+            
+                        <li class="menu-header">Main Content</li>
+                        <li class="dropdown {{ Request::is('kelolakelas*') || Request::is('kategorikelas*') ? 'active' : '' }}">
+                            <a href="" class="nav-link has-dropdown">
+                                <i class="fas fa-book"></i>
+                                <span>Kelola Kelas</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="{{ Request::is('kelolakelas*') ? 'active' : '' }}"><a class="nav-link" href="/kelolakelas">Data Kelas</a></li>
+                                <li class="{{ Request::is('kategorikelas*') ? 'active' : '' }}"><a class="nav-link" href="/kategorikelas">Kategori Kelas</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown {{ Request::is('kelolamodul*') || Request::is('kelolatest*') ? 'active' : '' }}">
+                            <a href="" class="nav-link has-dropdown">
+                                <i class="fas fa-folder"></i>
+                                <span>Modul dan Test</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="{{ Request::is('kelolamodul*') ? 'active' : '' }}"><a class="nav-link" href="/kelolamodul">Kelola Modul</a></li>
+                                <li class="{{ Request::is('kelolatest*') ? 'active' : '' }}"><a class="nav-link" href="/kelolatest">Kelola Test</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown {{ Request::is('kelolawebinar*') || Request::is('kelolaartikel*') ? 'active' : '' }}">
+                            <a href="" class="nav-link has-dropdown">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <span>Webinar & Artikel</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="{{ Request::is('kelolawebinar*') ? 'active' : '' }}"><a class="nav-link" href="/kelolawebinar">Kelola Webinar</a></li>
+                                <li class="{{ Request::is('kelolaartikel*') ? 'active' : '' }}"><a class="nav-link" href="/kelolaartikel">Kelola Artikel</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown {{ Request::is('kelolakaryawan*') || Request::is('kelolakoin*') ? 'active' : '' }}">
+                            <a href="" class="nav-link has-dropdown"><i class="fas fa-users-cog"></i><span>Karyawan</span></a>
+                            <ul class="dropdown-menu">
+                                <li class="{{ Request::is('kelolakaryawan*') ? 'active' : '' }}"><a class="nav-link" href="/kelolakaryawan">Data Karyawan</a></li>
+                                <li class="{{ Request::is('kelolakoin*') ? 'active' : '' }}"><a class="nav-link" href="/kelolakoin">Atur Koin</a></li>
+                            </ul>
+                        </li>
+            
+                        <li class="{{ Request::is('aktivitaskaryawan*') ? 'active' : '' }}">
+                            <a class="nav-link" href="/aktivitaskaryawan">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Aktivitas Karyawan</span>
+                            </a>
+                        </li>
+            
+                        <li class="menu-header">Manage</li>
+                        <li class="{{ Request::is('kelolastruktur*') ? 'active' : '' }}">
+                            <a class="nav-link" href="/kelolastruktur">
+                                <i class="fas fa-building"></i>
+                                <span>Kelola Struktur</span>
+                            </a>
+                        </li> 
+
+                        <li class="dropdown {{ Request::is('kelolafaq*') || Request::is('kategorifaq*') ? 'active' : '' }}">
+                            <a href="" class="nav-link has-dropdown"><i class="fas fa-circle-question"></i>
+                                <span>FAQ</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="{{ Request::is('kelolafaq*') ? 'active' : '' }}"><a class="nav-link" href="/kelolafaq">Kelola FAQ</a></li>
+                                <li class="{{ Request::is('kategorifaq*') ? 'active' : '' }}"><a class="nav-link" href="/kategorifaq">Kategori FAQ</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="{{ Request::is('komentarkelas*') ? 'active' : '' }}">
+                            <a class="nav-link" href="/komentarkelas">
+                                <i class="fas fa-bell"></i>
+                                <span>Komentar 
+                                    @if($jumlahDraf > 0)
+                                        <span class="badge badge-warning w-auto rounded p-1 mr-5">{{ $jumlahDraf }}</span>
+                                    @endif
+                                </span>
+                            </a>
+                        </li>    
+
+                        <li class="{{ Request::is('pengaduan*') ? 'active' : '' }}">
+                            <a class="nav-link" href="/pengaduan">
+                                <i class="fas fa-envelope"></i>
+                                <span>Pengaduan</span>
+                            </a>
+                        </li>          
+
+                        <li class="dropdown {{ Request::is('blog*') || Request::is('banner*') ? 'active' : '' }}">
+                            <a href="" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Komponen Web</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link {{ Request::is('banner*') ? 'active' : '' }}" href="#">Banner</a></li>
+                                <li><a class="nav-link beep beep-sidebar" href="#">Sampul Event</a></li>
+                                <li class="{{ Request::is('blog*') ? 'active' : '' }}"><a class="nav-link" href="/blog">Blog</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="{{ Request::is('profil*') ? 'active' : '' }}">
+                            <a class="nav-link" href="/profil">
+                                <i class="fas fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+            
+                        <li class="{{ Request::is('keluar') ? 'active' : '' }}">
+                            <a class="nav-link" href="javascript:void(0)" onclick="logoutConfirm()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+            
+
+            <!-- Main Content -->
+            @yield('content')
+            <!-- Akhir Main Content -->
+
+            <footer class="main-footer">
+                <div class="footer-left">
+                    Copyright &copy; 2024
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    @yield('script')
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  
+
+    <!-- General JS Scripts -->
+    <script src="{{ asset('style-backend/modules/jquery.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/popper.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/tooltip.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/moment.min.js') }}"></script>
+    <script src="{{ asset('style-backend/js/stisla.js') }}"></script>
+
+    <!-- JS Libraies -->
+    <script src="{{ asset('style-backend/modules/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/chart.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/owlcarousel2/dist/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('style-backend/modules/jquery-ui/jquery-ui.min.js') }}"></script>
+  
+    <!-- Page Specific JS File -->
+    <script src="assets/js/page/modules-datatables.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('style-backend/js/page/index.js') }}"></script>
+
+    <!-- Template JS File -->
+    <script src="{{ asset('style-backend/js/scripts.js') }}"></script>
+    <script src="{{ asset('style-backend/js/custom.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function logoutConfirm() {
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin keluar?',
+                text: "Anda akan logout dari akun ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#6777ef',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, logout!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit form logout jika user mengonfirmasi
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
+
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 4000,
+                showConfirmButton: true
+            });
+        @endif
+
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ session('error') }}',
+                timer: 4000,
+                showConfirmButton: true
+            });
+        @endif
+    </script>
+
+    <!-- Form logout tersembunyi -->
+    <form id="logout-form" action="/keluar" method="POST" style="display: none;">
+        @csrf
+    </form>        
+</body>
+
+</html>
